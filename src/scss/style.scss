@@ -11,6 +11,7 @@ body {
 
    font-size: 16px;
    font-family: "Aleo", serif;
+   letter-spacing: 1px;
 }
 
 .main {
@@ -65,68 +66,133 @@ body {
 }
 
 .menu {
-   padding: 25px 50px;
+   position: absolute;
+   height: 50vh;
+   width: 250px;
+   top: 32vh;
+   left: 50px;
+
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+
+   padding: 25px 10px 25px 10px;
+
+   background: rgba(0, 0, 0, 0.4);
+   //box-shadow: 3x 3px 3px rgba(0, 0, 0, 0.4);
+   border-radius: 10px;
+
+   color: #ffffff;
 
    &__level {
-      margin-bottom: 30px;
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+
+      font-size: 28px;
+      font-weight: 500;
+
+      text-transform: lowercase;
    }
 }
 
 .level {
-   &_very-low {
+   color: #ffffff;
+
+   &__btns {
+      margin: 5px 0px;
+      text-align: left;
    }
 
-   &_low {
+   &__btn {
+      margin: 10px;
+      text-align: left;
+      transition: color 500ms ease 0ms;
+
+      display: grid;
+      grid-template-columns: 1em auto;
+      gap: 0.5em;
+
+      &:hover {
+         color: rgba(255, 215, 0, 0.8);
+      }
    }
 
-   &_normal {
+   &__header {
+      color: rgba(255, 215, 0, 0.8);
+
+      padding: 2px 2px 20px 2px;
+      margin-bottom: 10px;
+      text-align: center;
+
+      text-transform: uppercase;
+      line-height: 120%;
+
+      border-bottom: 2px solid gold;
+   }
+}
+
+input[type="radio"] {
+   -webkit-appearance: none;
+   appearance: none;
+
+   //custom buttons
+   //outer
+   font: inherit;
+   width: 1.15em;
+   height: 1.15em;
+   border: 0.01em solid #ffffff;
+   border-radius: 50%;
+
+   transform: translateY(-0.09em);
+
+   //checked style
+   display: grid;
+   place-content: center;
+
+   &::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+      box-shadow: inset 1em 1em gold;
    }
 
-   &_high {
-   }
-
-   &_very-high {
+   &:checked::before {
+      transform: scale(1);
    }
 }
 
 .btn {
    transition: all 500ms ease 0ms;
-   display: inline-block;
+   align-self: center;
+
    display: flex;
    justify-content: center;
    align-items: center;
+   flex-shrink: 0;
 
    width: 200px;
    height: 50px;
-   &:not(:last-child) {
-      margin-bottom: 10px;
-   }
+   margin-bottom: 15px;
 
    text-transform: uppercase;
 
    color: #ffffff;
-   letter-spacing: 1px;
    font-size: 14px;
 
-   background: rgba(0, 0, 0, 0.4);
-   box-shadow: 3x 3px 3px rgba(0, 0, 0, 0.4);
-   border: 1px solid rgb(210, 245, 181);
+   background: rgba(0, 0, 0, 0.5);
+   border: 1px solid gold;
+
    border-radius: 10px;
 
    &:hover {
       background: rgba(0, 0, 0, 0.8);
-   }
-
-   &_level {
-   }
-
-   &_start {
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgb(248, 161, 85);
-      &:hover {
-         background: rgba(0, 0, 0, 0.8);
-         font-size: 15px;
-      }
+      font-size: 15px;
    }
 }
 
@@ -135,6 +201,84 @@ body {
    }
 
    &__face {
+   }
+}
+
+.deck {
+   &__stages {
+      position: absolute;
+      height: 50vh;
+      width: 250px;
+      top: 32vh;
+      right: 50px;
+
+      display: flex;
+      flex-direction: column;
+
+      padding: 25px 10px 25px 10px;
+
+      background: rgba(0, 0, 0, 0.4);
+      //box-shadow: 3x 3px 3px rgba(0, 0, 0, 0.4);
+      border-radius: 10px;
+
+      color: #ffffff;
+      font-size: 28px;
+
+      &__header {
+         color: rgba(255, 215, 0, 0.8);
+
+         padding: 2px 2px 20px 2px;
+         margin-bottom: 10px;
+         text-align: center;
+
+         text-transform: uppercase;
+         line-height: 120%;
+
+         border-bottom: 2px solid gold;
+      }
+
+      &__container {
+         display: flex;
+         justify-content: center;
+         gap: 30px;
+         //align-items: center;
+         margin: 0 auto;
+      }
+   }
+
+   &__stage {
+      flex: 1 1 33.333%;
+      text-align: center;
+   }
+}
+.stage {
+   &__text {
+      color: rgba(255, 215, 0, 0.8);
+      margin-bottom: 20px;
+   }
+
+   &__card {
+      margin-bottom: 10px;
+      width: 50px;
+      height: 50px;
+      border-radius: 40%;
+      border: 1px solid gold;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   &__green-cards {
+      background-color: green;
+   }
+
+   &__brown-cards {
+      background-color: rgb(177, 127, 52);
+   }
+
+   &__blue-cards {
+      background-color: rgba(33, 33, 228, 0.5);
    }
 }
 

@@ -21,19 +21,60 @@
       </div>
       <div class="main__text">Chose an aincient...</div>
       <div class="menu">
-
          <div class="menu__level">
-            <button type="button" class="btn btn_level level_very-low">Very low</button>
-            <button type="button" class="btn btn_level level_low">Low</button>
-            <button type="button" class="btn btn_level level_normal">Normal</button>
-            <button type="button" class="btn btn_level level_high">High</button>
-            <button type="button" class="btn btn_level level_very-high">Very high</button>
+            <div class="level__header">level</div>
+            <div class="level__btns">
+               <label class="level__btn">
+                  <input type="radio" name="level">
+                  Very low
+               </label>
+               <label class="level__btn">
+                  <input type="radio" name="level">
+                  Low
+               </label>
+               <label class="level__btn">
+                  <input type="radio" name="level">
+                  Normal
+               </label>
+               <label class="level__btn">
+                  <input type="radio" name="level">
+                  High
+               </label>
+               <label class="level__btn">
+                  <input type="radio" name="level">
+                  Very high
+               </label>
+            </div>
          </div>
-         <button class="start btn btn_start">Shuffle the deck</button>
+         <button class="btn btn_start">Shuffle the deck</button>
       </div>
       <div class="card-deck">
          <div class="card-deck__back"></div>
          <div class="card-deck__face"></div>
+      </div>
+      <div class="deck__stages">
+         <div class="deck__stages__header">Stages</div>
+         <div class="deck__stages__container">
+            <div class="deck__stage">
+               <div class="stage__text">1</div>
+               <div class="stage__card stage__green-cards"></div>
+               <div class="stage__card stage__brown-cards"></div>
+               <div class="stage__card stage__blue-cards"></div>
+            </div>
+            <div class="deck__stage">
+               <div class="stage__text">2</div>
+               <div class="stage__card stage__green-cards"></div>
+               <div class="stage__card stage__brown-cards"></div>
+               <div class="stage__card stage__blue-cards"></div>
+            </div>
+            <div class="deck__stage">
+               <div class="stage__text">3</div>
+               <div class="stage__card stage__green-cards"></div>
+               <div class="stage__card stage__brown-cards"></div>
+               <div class="stage__card stage__blue-cards"></div>
+            </div>
+
+         </div>
       </div>
       <div class="cards"></div>
    </main>
