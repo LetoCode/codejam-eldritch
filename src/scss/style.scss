@@ -7,7 +7,11 @@
 body {
    width: 100vw;
    height: 100vh;
-   background: url("../assets/bg/bg_begin.jpg") 0 0 /100% 100% no-repeat;
+   transition: all 900ms ease 0s;
+   background-image: url("../assets/bg/bg_begin.jpg");
+   background-position: 0 0;
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
 
    font-size: 16px;
    font-family: "Aleo", serif;
@@ -21,7 +25,7 @@ body {
 
    &__text {
       position: absolute;
-      top: 50%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
       display: inline-block;
@@ -38,45 +42,72 @@ body {
 .aincients {
    width: 100vw;
    padding: 20px 50px;
-   height: 30vh;
+   height: 40vh;
    display: flex;
    gap: 25px;
+   position: absolute;
+   left: 0;
+   bottom: 0;
 
    &__card {
       height: 100%;
       flex: 1 1 25%;
       border-radius: 10px;
+
+      cursor: pointer;
+
+      transition: opacity 500ms ease 0s;
+      &:hover {
+         opacity: 0.7;
+         .aincients__card__text {
+            opacity: 1;
+         }
+      }
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__text {
+         color: #ffffff;
+         font-size: 24px;
+         opacity: 0;
+      }
+
+      &._inActive {
+         box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.8) inset;
+      }
    }
 }
 
-#Azathoth {
+#azathoth {
    background: url("../assets/Ancients/Azathoth.png") 0 0 / 100% 100% no-repeat;
 }
 
-#Cthulthu {
+#cthulhu {
    background: url("../assets/Ancients/Cthulthu.png") 0 0 / 100% 100% no-repeat;
 }
 
-#IogSothoth {
+#iogSothoth {
    background: url("../assets/Ancients/IogSothoth.png") 0 0 / 100% 100% no-repeat;
 }
 
-#ShubNiggurath {
+#shubNiggurath {
    background: url("../assets/Ancients/ShubNiggurath.png") 0 0 / 100% 100% no-repeat;
 }
 
 .menu {
    position: absolute;
-   height: 50vh;
+   //height: 35vh;
    width: 250px;
-   top: 32vh;
+   top: 5vh;
    left: 50px;
 
    display: flex;
    flex-direction: column;
    flex-wrap: nowrap;
 
-   padding: 25px 10px 25px 10px;
+   padding: 25px 10px 1% 10px;
 
    background: rgba(0, 0, 0, 0.4);
    //box-shadow: 3x 3px 3px rgba(0, 0, 0, 0.4);
@@ -207,15 +238,15 @@ input[type="radio"] {
 .deck {
    &__stages {
       position: absolute;
-      height: 50vh;
+      //height: 35vh;
       width: 250px;
-      top: 32vh;
+      top: 5vh;
       right: 50px;
 
       display: flex;
       flex-direction: column;
 
-      padding: 25px 10px 25px 10px;
+      padding: 25px 10px 5% 10px;
 
       background: rgba(0, 0, 0, 0.4);
       //box-shadow: 3x 3px 3px rgba(0, 0, 0, 0.4);
@@ -241,7 +272,6 @@ input[type="radio"] {
          display: flex;
          justify-content: center;
          gap: 30px;
-         //align-items: center;
          margin: 0 auto;
       }
    }
