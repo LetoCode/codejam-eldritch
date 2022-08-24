@@ -10,25 +10,27 @@
    <title>Eldritch Horror</title>
 </head>
 
-<body>
+<body class="popup-open">
 
    <main class="main">
-      <div class="aincients">
-         <div class="aincients__card" id="azathoth">
-            <div class="aincients__card__text">- choose -</div>
-         </div>
+
+      <div class="aincients _onload_out_side">
          <div class="aincients__card" id="cthulhu">
-            <div class="aincients__card__text">- choose -</div>
-         </div>
-         <div class="aincients__card" id="iogSothoth">
             <div class="aincients__card__text">- choose -</div>
          </div>
          <div class="aincients__card" id="shubNiggurath">
             <div class="aincients__card__text">- choose -</div>
          </div>
+         <div class="aincients__card" id="iogSothoth">
+            <div class="aincients__card__text">- choose -</div>
+         </div>
+         <div class="aincients__card" id="azathoth">
+            <div class="aincients__card__text">- choose -</div>
+         </div>
       </div>
-      <div class="main__text">Chose an aincient...</div>
-      <div class="menu">
+      <div class="main__text _aincient _onload_out_side">Chose the aincient horror...</div>
+      <div class="main__text _level _onload_out_side">Chose the level...</div>
+      <div class="menu _onload_out_side">
          <div class="menu__level">
             <div class="level__header">level</div>
             <div class="level__btns">
@@ -54,13 +56,13 @@
                </label>
             </div>
          </div>
-         <button class="btn btn_start">Shuffle the deck</button>
+         <button class="btn btn_start">go </button>
       </div>
       <div class="card-deck">
          <div class="card-deck__back"></div>
          <div class="card-deck__face"></div>
       </div>
-      <div class="deck__stages">
+      <div class="deck__stages _onload_out_side">
          <div class="deck__stages__header">Stages</div>
          <div class="deck__stages__container">
             <div class="deck__stage">
@@ -84,8 +86,22 @@
 
          </div>
       </div>
-      <div class="cards"></div>
+
+
+
    </main>
+
+   <div id="popup_begin" class="popup _open">
+      <div class="popup__body">
+         <div class="popup__content">
+            <div class="popup__close close-popup"></div>
+
+            <button type="button" class="btn btn_begin">Let's play</button>
+
+         </div>
+      </div>
+   </div>
+   </div>
 
 
 </body>

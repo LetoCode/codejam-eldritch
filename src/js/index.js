@@ -1,4 +1,5 @@
 import '../scss/style.scss';
+import './popup';
 
 import ancients from "../assets/Ancients";
 import cardsBlue from "../assets/MythicCards/blue";
@@ -10,10 +11,10 @@ import ancientsData from '../assets/data/ancients_data';
 
 
 //==============================================================
-const azathoth = document.getElementById('azathoth');
-const cthulthu = document.getElementById('cthulhu');
-const iogSothoth = document.getElementById('iogSothoth');
-const shubNiggurath = document.getElementById('shubNiggurath');
+// const azathoth = document.getElementById('azathoth');
+// const cthulthu = document.getElementById('cthulhu');
+// const iogSothoth = document.getElementById('iogSothoth');
+// const shubNiggurath = document.getElementById('shubNiggurath');
 const aincients = document.querySelector('.aincients');
 const aincientsCards = document.querySelectorAll('.aincients__card');
 
@@ -27,8 +28,16 @@ const stageTreeGreen = document.getElementById('stageTreeGreen');
 const stageTreeBrown = document.getElementById('stageTreeBrown');
 const stageTreeBlue = document.getElementById('stageTreeBlue');
 
+const cardDeckBack = document.querySelector('.card-deck__back');
+const cardDeckFace = document.querySelector('.card-deck__face');
+
 const btnStart = document.querySelector('.btn_start');
 const levelBtn = document.querySelectorAll('.level__btn');
+
+const mainTextAincient = document.querySelector('.main__text._aincient');
+const mainTextLevel = document.querySelector('.main__text._level');
+const deckStagesOnloadOutSide = document.querySelector('.deck__stages._onload_out_side');
+const menuOnloadOutSide = document.querySelector('.menu._onload_out_side');
 
 
 //==========================VariableStages====================================
@@ -41,16 +50,21 @@ export let blueCardsAmount;
 let isMonster = false;
 let isLevel = false;
 let level = undefined;
+let playDeck;
 
 //==============================================================
 
-import { chooseCardsForDifficulties } from './choose';
+import { chooseCardsForDifficulties, shuffleDecks, getStageDeck, getShuffledCards } from './choose';
 
 //==============================================================
-
 
 
 document.addEventListener('click', documentClick);
+// document.onload = init;
+
+// function init() {
+
+// }
 
 
 function documentClick(e) {
@@ -71,13 +85,18 @@ function documentClick(e) {
       }
 
       togleActiveClassToAincients(aincientID);
-
+      addActiveClassToAincients();
+      hideMainTextAincient();
+      showDeckStages();
+      showDifficulties();
+      showMainTextLevel();
    }
 
    if (e.target.closest('.menu')) {
       levelBtn.forEach(el => {
          if (el.firstElementChild.checked) {
             isLevel = true;
+            hideMainTextLevel();
             level = el.firstElementChild.id;
          }
       })
@@ -94,12 +113,36 @@ function documentClick(e) {
       }
       if (isMonster && isLevel) {
 
-         chooseCardsForDifficulties(level, firstStage, secondStage, thirdStage);
-      }
+         //Получаем все возможный карты согласно выбранной сложности и выбранного древнего
+         const cardsChosen = chooseCardsForDifficulties(level);
 
+         //Перемешиваем полученные карты
+         const cardsChosenShuffled = shuffleDecks(cardsChosen);
+
+         //Получаем колоды для каждого этапа
+         let firstStageDeck = getStageDeck(firstStage, cardsChosenShuffled);
+         let secondStageDeck = getStageDeck(secondStage, cardsChosenShuffled);
+         let thirdStageDeck = getStageDeck(thirdStage, cardsChosenShuffled);
+
+         //Перемешиваем колоды
+         firstStageDeck = getShuffledCards(firstStageDeck);
+         secondStageDeck = getShuffledCards(secondStageDeck);
+         thirdStageDeck = getShuffledCards(thirdStageDeck);
+
+         playDeck = thirdStageDeck.concat(secondStageDeck).concat(firstStageDeck);
+
+         cardDeckBack.style.backgroundImage = `url('${playDeck[playDeck.length - 1].cardCover}')`;
+
+         console.log('playDeck= ', playDeck);
+
+      }
    }
 
-
+   if (e.target === cardDeckBack) {
+      const currentCard = showDeck();
+      removeCardFromStageList(currentCard);
+      fillHtmlStageCards();
+   }
 }
 
 function getAncientData(id) {
@@ -129,8 +172,8 @@ function fillHtmlStageCards() {
    stageTreeGreen.innerText = thirdStage.greenCards;
    stageTreeBrown.innerText = thirdStage.brownCards;
    stageTreeBlue.innerText = thirdStage.blueCards;
-
 }
+
 
 function togleActiveClassToAincients(aincientID) {
    aincientsCards.forEach(el => {
@@ -144,7 +187,67 @@ function togleActiveClassToAincients(aincientID) {
    })
 }
 
+
+function hideMainTextAincient() {
+   mainTextAincient.classList.add('_onload_out_side');
+}
+
+
+function showDeckStages() {
+   deckStagesOnloadOutSide.classList.remove('_onload_out_side');
+}
+
+
+function addActiveClassToAincients() {
+   aincients.classList.add('_active');
+}
+
+function showDifficulties() {
+   menuOnloadOutSide.classList.remove('_onload_out_side');
+}
+
+function showMainTextLevel() {
+   mainTextLevel.classList.remove('_onload_out_side');
+}
+
+function hideMainTextLevel() {
+   mainTextLevel.classList.add('_onload_out_side');
+}
+
 function setBg(aincientData) {
    document.body.style.backgroundImage = `url(${aincientData[0].bg})`;
-
 }
+
+
+function showDeck() {
+   const currentCard = playDeck.pop();
+   cardDeckFace.style.backgroundImage = `url('${currentCard.cardFace}')`;
+   console.log(playDeck)
+   if (playDeck.length === 0) {
+      cardDeckBack.style.backgroundImage = '';
+   } else {
+      cardDeckBack.style.backgroundImage = `url('${playDeck[playDeck.length - 1].cardCover}')`;
+   }
+
+   return currentCard;
+}
+
+function removeCardFromStageList(card) {
+   const stageKey = `${card.color}Cards`;
+
+   if (firstStage[stageKey] != 0) {
+      firstStage[stageKey] = firstStage[stageKey] - 1;
+      return;
+   }
+
+   if (secondStage[stageKey] != 0) {
+      secondStage[stageKey] = secondStage[stageKey] - 1;
+      return;
+   }
+
+   if (thirdStage[stageKey] != 0) {
+      thirdStage[stageKey] = thirdStage[stageKey] - 1;
+      return;
+   }
+}
+

@@ -1,4 +1,5 @@
 @import "./nullstyle";
+@import "./popup";
 
 @import url("https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
@@ -36,18 +37,40 @@ body {
       font-size: 62px;
       letter-spacing: 2px;
       text-transform: lowercase;
+
+      opacity: 1;
+      visibility: visible;
+      transition: all 500ms ease 800ms;
+
+      &._onload_out_side {
+         opacity: 0;
+         visibility: hidden;
+      }
    }
 }
 
 .aincients {
    width: 100vw;
    padding: 20px 50px;
-   height: 40vh;
+   height: 50vh;
    display: flex;
    gap: 25px;
    position: absolute;
    left: 0;
-   bottom: 0;
+   bottom: 10%;
+
+   transition: all 800ms ease 0s;
+
+   //! todo
+   &._onload_out_side {
+      bottom: -100%;
+      //display: none;
+   }
+
+   &._active {
+      display: inline-block;
+      bottom: 20px;
+   }
 
    &__card {
       height: 100%;
@@ -56,7 +79,8 @@ body {
 
       cursor: pointer;
 
-      transition: opacity 500ms ease 0s;
+      transition: all 800ms ease 0s;
+
       &:hover {
          opacity: 0.7;
          .aincients__card__text {
@@ -76,6 +100,29 @@ body {
 
       &._inActive {
          box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.8) inset;
+         position: absolute;
+         z-index: 1;
+         bottom: 0;
+         right: 0;
+         flex: 0 0 25%;
+         min-width: 406px;
+      }
+
+      &._active {
+         position: absolute;
+         z-index: 2;
+         bottom: 0;
+         right: 0;
+         flex: 0 0 25%;
+         min-width: 406px;
+
+         &:hover {
+            opacity: 1;
+            cursor: default;
+            .aincients__card__text {
+               opacity: 0;
+            }
+         }
       }
    }
 }
@@ -100,7 +147,7 @@ body {
    position: absolute;
    //height: 35vh;
    width: 250px;
-   top: 5vh;
+   top: 20px;
    left: 50px;
 
    display: flex;
@@ -114,6 +161,11 @@ body {
    border-radius: 10px;
 
    color: #ffffff;
+
+   //! to do
+   &._onload_out_side {
+      left: -99999px;
+   }
 
    &__level {
       flex-grow: 1;
@@ -207,31 +259,72 @@ input[type="radio"] {
    align-items: center;
    flex-shrink: 0;
 
-   width: 200px;
-   height: 50px;
    margin-bottom: 15px;
 
    text-transform: uppercase;
 
    color: #ffffff;
-   font-size: 14px;
 
    background: rgba(0, 0, 0, 0.5);
-   border: 1px solid gold;
+   border: 1px solid rgb(228, 219, 168);
 
-   border-radius: 10px;
+   &_start {
+      border-radius: 10px;
+      font-size: 14px;
+      width: 200px;
+      height: 50px;
 
-   &:hover {
-      background: rgba(0, 0, 0, 0.8);
-      font-size: 15px;
+      &:hover {
+         background: rgba(0, 0, 0, 0.8);
+         font-size: 15px;
+      }
+   }
+
+   &_begin {
+      border-radius: 5px;
+      font-size: 24px;
+      width: 350px;
+      height: 80px;
+      letter-spacing: 4px;
+
+      &:hover {
+         background: rgba(0, 0, 0, 0.8);
+         text-shadow: rgb(228, 219, 168) 3px 0 10px;
+      }
    }
 }
 
 .card-deck {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+   display: flex;
+   gap: 10px;
+
+   transition: all 600ms ease 0s;
+
    &__back {
+      width: 300px;
+      height: 450px;
+      background-position: 0 0;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+      border-radius: 10px;
+
+      cursor: pointer;
    }
 
    &__face {
+      width: 300px;
+      height: 450px;
+      background-position: 0 0;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+
+      border-radius: 5px;
    }
 }
 
@@ -240,7 +333,7 @@ input[type="radio"] {
       position: absolute;
       //height: 35vh;
       width: 250px;
-      top: 5vh;
+      top: 20px;
       right: 50px;
 
       display: flex;
@@ -254,6 +347,13 @@ input[type="radio"] {
 
       color: #ffffff;
       font-size: 28px;
+
+      transition: all 800ms ease 0s;
+
+      //! to do
+      &._onload_out_side {
+         right: -100%;
+      }
 
       &__header {
          color: rgba(255, 215, 0, 0.8);
