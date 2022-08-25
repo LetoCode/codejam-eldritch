@@ -2,11 +2,13 @@
 @import "./popup";
 
 @import url("https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Damion:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Creepster:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 //===========================================================================
 
 body {
-   width: 100vw;
+   margin: 0 auto;
+   max-width: 1920px;
    height: 100vh;
    transition: all 900ms ease 0s;
    background-image: url("../assets/bg/bg_begin.jpg");
@@ -15,8 +17,10 @@ body {
    background-repeat: no-repeat;
 
    font-size: 16px;
-   font-family: "Aleo", serif;
+   font-family: "Creepster", serif;
    letter-spacing: 1px;
+
+   overflow: hidden;
 }
 
 .main {
@@ -30,10 +34,12 @@ body {
       left: 50%;
       transform: translate(-50%, -50%);
       display: inline-block;
-      padding: 20px;
-      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
 
+      text-align: center;
       color: #ffffff;
+      background-color: rgba(0, 0, 0, 0.5);
       font-size: 62px;
       letter-spacing: 2px;
       text-transform: lowercase;
@@ -50,21 +56,20 @@ body {
 }
 
 .aincients {
-   width: 100vw;
+   width: 100%;
    padding: 20px 50px;
    height: 50vh;
    display: flex;
    gap: 25px;
    position: absolute;
+   z-index: 2;
    left: 0;
    bottom: 10%;
 
    transition: all 800ms ease 0s;
 
-   //! todo
    &._onload_out_side {
       bottom: -100%;
-      //display: none;
    }
 
    &._active {
@@ -93,28 +98,28 @@ body {
       align-items: center;
 
       &__text {
-         color: #ffffff;
-         font-size: 24px;
+         color: red;
+         font-size: 34px;
          opacity: 0;
       }
 
       &._inActive {
          box-shadow: 0 0 0 99999px rgba(0, 0, 0, 0.8) inset;
          position: absolute;
-         z-index: 1;
+         z-index: 3;
          bottom: 0;
-         right: 0;
+         right: 50px;
          flex: 0 0 25%;
-         min-width: 406px;
+         width: 406px;
       }
 
       &._active {
          position: absolute;
-         z-index: 2;
+         z-index: 4;
          bottom: 0;
-         right: 0;
+         right: 50px;
          flex: 0 0 25%;
-         min-width: 406px;
+         width: 406px;
 
          &:hover {
             opacity: 1;
@@ -145,7 +150,6 @@ body {
 
 .menu {
    position: absolute;
-   //height: 35vh;
    width: 250px;
    top: 20px;
    left: 50px;
@@ -205,6 +209,7 @@ body {
 
    &__header {
       color: rgba(255, 215, 0, 0.8);
+      font-size: 40px;
 
       padding: 2px 2px 20px 2px;
       margin-bottom: 10px;
@@ -270,7 +275,8 @@ input[type="radio"] {
 
    &_start {
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 34px;
+      color: red;
       width: 200px;
       height: 50px;
 
@@ -281,21 +287,34 @@ input[type="radio"] {
    }
 
    &_begin {
-      border-radius: 5px;
+      border-radius: 50%;
       font-size: 24px;
-      width: 350px;
-      height: 80px;
+      width: 200px;
+      height: 200px;
       letter-spacing: 4px;
+      //border: 4px solid rgb(228, 219, 168);
+      border: none;
+      background: none;
+      color: rgb(228, 219, 168);
+
+      line-height: 150%;
 
       &:hover {
          background: rgba(0, 0, 0, 0.8);
-         text-shadow: rgb(228, 219, 168) 3px 0 10px;
+         background: none;
+         text-shadow: rgb(255, 0, 0) 0px 0px 10px;
+      }
+
+      &._fangs_off {
+         height: 50px;
+         line-height: 40%;
       }
    }
 }
 
 .card-deck {
    position: absolute;
+   z-index: -1;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
@@ -304,6 +323,10 @@ input[type="radio"] {
    gap: 10px;
 
    transition: all 600ms ease 0s;
+
+   &._active {
+      z-index: 1;
+   }
 
    &__back {
       width: 300px;
@@ -331,15 +354,14 @@ input[type="radio"] {
 .deck {
    &__stages {
       position: absolute;
-      //height: 35vh;
-      width: 250px;
+      width: 406px;
       top: 20px;
       right: 50px;
 
       display: flex;
       flex-direction: column;
 
-      padding: 25px 10px 5% 10px;
+      padding: 25px 10px 1% 10px;
 
       background: rgba(0, 0, 0, 0.4);
       //box-shadow: 3x 3px 3px rgba(0, 0, 0, 0.4);
@@ -357,6 +379,7 @@ input[type="radio"] {
 
       &__header {
          color: rgba(255, 215, 0, 0.8);
+         font-size: 40px;
 
          padding: 2px 2px 20px 2px;
          margin-bottom: 10px;
@@ -389,9 +412,9 @@ input[type="radio"] {
 
    &__card {
       margin-bottom: 10px;
-      width: 50px;
+      width: 90px;
       height: 50px;
-      border-radius: 40%;
+      border-radius: 5px;
       border: 1px solid gold;
 
       display: flex;

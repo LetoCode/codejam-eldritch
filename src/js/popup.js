@@ -8,9 +8,15 @@ const mainTextAincientOnloadOutSide = document.querySelector('.main__text._ainci
 
 
 btnBegin.addEventListener('click', function (event) {
-   popupClose(event.target.closest('.popup'));
 
+   const fangs = document.querySelector('.popup._open ');
+   fangs.classList.add('_fangs_off');
+   btnBegin.classList.add('_fangs_off');
+   const e = event.target.closest('.popup');
+   setTimeout(popupClose, 500, e);
 });
+
+popupClose();
 
 // popup_btns.forEach(popup_btn => {
 //    popup_btn.addEventListener('click', function (event) {
@@ -37,7 +43,8 @@ btnBegin.addEventListener('click', function (event) {
 
 function popupClose(thisPopup) {
    if (thisPopup) {
-      thisPopup.classList.remove('_open')
+      thisPopup.classList.remove('_open');
+      thisPopup.classList.add('_closed');
       body.classList.remove('popup-open');
       aincientsOnloadOutSide.classList.remove('_onload_out_side');
       mainTextAincientOnloadOutSide.classList.remove('_onload_out_side');

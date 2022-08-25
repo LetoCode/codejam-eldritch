@@ -1,5 +1,5 @@
 body.popup-open {
-   overflow: hidden;
+   // overflow: hidden;
 }
 
 .popup {
@@ -11,7 +11,7 @@ body.popup-open {
    left: 0;
    visibility: hidden;
    opacity: 0;
-   transition: all 800ms ease 0s;
+   transition: all 500ms ease 0s;
 
    display: flex;
    justify-content: center;
@@ -20,10 +20,23 @@ body.popup-open {
 .popup._open {
    visibility: visible;
    opacity: 1;
+   background-image: url("../assets/bg/bg_fangs.png");
+   background-repeat: no-repeat;
+   background-position: 50% 50%;
+   background-size: 500px 340px;
+
+   &._fangs_off {
+      background-size: 500px 240px;
+   }
+}
+
+.popup._closed {
+   transform: translate(0px, -100%);
 }
 
 .popup._open .popup__content {
    // transform: translate(0px, 0%);
+
    opacity: 1;
 }
 

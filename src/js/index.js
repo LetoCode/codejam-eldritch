@@ -28,6 +28,7 @@ const stageTreeGreen = document.getElementById('stageTreeGreen');
 const stageTreeBrown = document.getElementById('stageTreeBrown');
 const stageTreeBlue = document.getElementById('stageTreeBlue');
 
+const cardDeck = document.querySelector('.card-deck');
 const cardDeckBack = document.querySelector('.card-deck__back');
 const cardDeckFace = document.querySelector('.card-deck__face');
 
@@ -84,8 +85,8 @@ function documentClick(e) {
          alert('aincientData.length = 0');
       }
 
-      togleActiveClassToAincients(aincientID);
-      addActiveClassToAincients();
+      togleActiveClassToAincient(aincientID);
+      addActiveClassToAincientsContainer();
       hideMainTextAincient();
       showDeckStages();
       showDifficulties();
@@ -133,7 +134,9 @@ function documentClick(e) {
 
          cardDeckBack.style.backgroundImage = `url('${playDeck[playDeck.length - 1].cardCover}')`;
 
-         console.log('playDeck= ', playDeck);
+         addActiveClassToCardDeck();
+
+         //console.log('playDeck= ', playDeck);
 
       }
    }
@@ -175,7 +178,7 @@ function fillHtmlStageCards() {
 }
 
 
-function togleActiveClassToAincients(aincientID) {
+function togleActiveClassToAincient(aincientID) {
    aincientsCards.forEach(el => {
       if (el.id === aincientID) {
          el.classList.add('_active');
@@ -198,9 +201,15 @@ function showDeckStages() {
 }
 
 
-function addActiveClassToAincients() {
+function addActiveClassToAincientsContainer() {
    aincients.classList.add('_active');
 }
+
+
+function addActiveClassToCardDeck() {
+   cardDeck.classList.add('_active');
+}
+
 
 function showDifficulties() {
    menuOnloadOutSide.classList.remove('_onload_out_side');
