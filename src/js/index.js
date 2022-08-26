@@ -1,5 +1,6 @@
 import '../scss/style.scss';
 import './popup';
+import './cards';
 
 import ancients from "../assets/Ancients";
 import cardsBlue from "../assets/MythicCards/blue";
@@ -11,10 +12,6 @@ import ancientsData from '../assets/data/ancients_data';
 
 
 //==============================================================
-// const azathoth = document.getElementById('azathoth');
-// const cthulthu = document.getElementById('cthulhu');
-// const iogSothoth = document.getElementById('iogSothoth');
-// const shubNiggurath = document.getElementById('shubNiggurath');
 const aincients = document.querySelector('.aincients');
 const aincientsCards = document.querySelectorAll('.aincients__card');
 
@@ -28,9 +25,6 @@ const stageTreeGreen = document.getElementById('stageTreeGreen');
 const stageTreeBrown = document.getElementById('stageTreeBrown');
 const stageTreeBlue = document.getElementById('stageTreeBlue');
 
-const cardDeck = document.querySelector('.card-deck');
-const cardDeckBack = document.querySelector('.card-deck__back');
-const cardDeckFace = document.querySelector('.card-deck__face');
 
 const btnStart = document.querySelector('.btn_start');
 const levelBtn = document.querySelectorAll('.level__btn');
@@ -51,21 +45,17 @@ export let blueCardsAmount;
 let isMonster = false;
 let isLevel = false;
 let level = undefined;
-let playDeck;
+export let playDeck;
 
 //==============================================================
 
 import { chooseCardsForDifficulties, shuffleDecks, getStageDeck, getShuffledCards } from './choose';
+import { setCover, showCover, setFaceForRotation, addActiveClassToCardDeck } from './cards';
 
 //==============================================================
 
 
 document.addEventListener('click', documentClick);
-// document.onload = init;
-
-// function init() {
-
-// }
 
 
 function documentClick(e) {
@@ -132,7 +122,10 @@ function documentClick(e) {
 
          playDeck = thirdStageDeck.concat(secondStageDeck).concat(firstStageDeck);
 
-         cardDeckBack.style.backgroundImage = `url('${playDeck[playDeck.length - 1].cardCover}')`;
+         //cardDeckBack.style.backgroundImage = `url('${playDeck[playDeck.length - 1].cardCover}')`;
+         setCover(playDeck[playDeck.length - 1].cardCover);
+         showCover();
+         setFaceForRotation(playDeck[playDeck.length - 1].cardFace);
 
          addActiveClassToCardDeck();
 
@@ -141,11 +134,6 @@ function documentClick(e) {
       }
    }
 
-   if (e.target === cardDeckBack) {
-      const currentCard = showDeck();
-      removeCardFromStageList(currentCard);
-      fillHtmlStageCards();
-   }
 }
 
 function getAncientData(id) {
@@ -165,7 +153,7 @@ function setVariableStages(aincientData) {
 }
 
 
-function fillHtmlStageCards() {
+export function fillHtmlStageCards() {
    stageOneGreen.innerText = firstStage.greenCards;
    stageOneBrown.innerText = firstStage.brownCards;
    stageOneBlue.innerText = firstStage.blueCards;
@@ -206,11 +194,6 @@ function addActiveClassToAincientsContainer() {
 }
 
 
-function addActiveClassToCardDeck() {
-   cardDeck.classList.add('_active');
-}
-
-
 function showDifficulties() {
    menuOnloadOutSide.classList.remove('_onload_out_side');
 }
@@ -228,20 +211,7 @@ function setBg(aincientData) {
 }
 
 
-function showDeck() {
-   const currentCard = playDeck.pop();
-   cardDeckFace.style.backgroundImage = `url('${currentCard.cardFace}')`;
-   console.log(playDeck)
-   if (playDeck.length === 0) {
-      cardDeckBack.style.backgroundImage = '';
-   } else {
-      cardDeckBack.style.backgroundImage = `url('${playDeck[playDeck.length - 1].cardCover}')`;
-   }
-
-   return currentCard;
-}
-
-function removeCardFromStageList(card) {
+export function removeCardFromStageList(card) {
    const stageKey = `${card.color}Cards`;
 
    if (firstStage[stageKey] != 0) {

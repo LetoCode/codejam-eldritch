@@ -1,5 +1,6 @@
 @import "./nullstyle";
-@import "./popup";
+@import "./_popup";
+@import "./_cards";
 
 @import url("https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Damion:ital,wght@0,400;0,700;1,400;1,700&display=swap");
@@ -12,7 +13,7 @@ body {
    height: 100vh;
    transition: all 900ms ease 0s;
    background-image: url("../assets/bg/bg_begin.jpg");
-   background-position: 0 0;
+   background-position: 50% 50%;
    background-size: 100% 100%;
    background-repeat: no-repeat;
 
@@ -166,7 +167,6 @@ body {
 
    color: #ffffff;
 
-   //! to do
    &._onload_out_side {
       left: -99999px;
    }
@@ -282,7 +282,7 @@ input[type="radio"] {
 
       &:hover {
          background: rgba(0, 0, 0, 0.8);
-         font-size: 15px;
+         font-size: 40px;
       }
    }
 
@@ -308,45 +308,6 @@ input[type="radio"] {
          height: 50px;
          line-height: 40%;
       }
-   }
-}
-
-.card-deck {
-   position: absolute;
-   z-index: -1;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-
-   display: flex;
-   gap: 10px;
-
-   transition: all 600ms ease 0s;
-
-   &._active {
-      z-index: 10;
-   }
-
-   &__back {
-      width: 300px;
-      height: 450px;
-      background-position: 0 0;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-
-      border-radius: 10px;
-
-      cursor: pointer;
-   }
-
-   &__face {
-      width: 300px;
-      height: 450px;
-      background-position: 0 0;
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-
-      border-radius: 5px;
    }
 }
 
