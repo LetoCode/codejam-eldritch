@@ -96,7 +96,7 @@ function clickOnCard() {
       cardRotatedClassFace.classList.remove('_visible');
       cardRotatedClassCover.classList.remove('_visible');
       cardCoverClass.addEventListener('click', clickOnCard);
-   }, 500
+   }, 400
    )
 
 

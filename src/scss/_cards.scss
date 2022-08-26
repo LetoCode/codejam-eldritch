@@ -25,7 +25,7 @@
 
       border-radius: 10px;
 
-      transition: transform 500ms ease 0s;
+      transition: transform 400ms ease 0s;
       flex-grow: 1;
       flex-shrink: 0;
       img {
@@ -57,7 +57,7 @@
    left: -50%;
 
    perspective: 1000px;
-   transition: transform 500ms ease 0s;
+   transition: transform 400ms ease 0s;
 
    &._visible {
       opacity: 1;

@@ -34,7 +34,7 @@ const mainTextLevel = document.querySelector('.main__text._level');
 const deckStagesOnloadOutSide = document.querySelector('.deck__stages._onload_out_side');
 const menuOnloadOutSide = document.querySelector('.menu._onload_out_side');
 
-
+const popupEnd = document.querySelector('.popup_end');
 //==========================VariableStages====================================
 export let firstStage;
 export let secondStage;
@@ -42,6 +42,7 @@ export let thirdStage;
 export let greenCardsAmount;
 export let brownCardsAmount;
 export let blueCardsAmount;
+let isPlaying = false;
 let isMonster = false;
 let isLevel = false;
 let level = undefined;
@@ -102,7 +103,10 @@ function documentClick(e) {
       if (isLevel === false) {
          alert('Не выбран уровень!');
       }
-      if (isMonster && isLevel) {
+
+      if (isMonster && isLevel && !isPlaying) {
+
+         isPlaying = true;
 
          //Получаем все возможный карты согласно выбранной сложности и выбранного древнего
          const cardsChosen = chooseCardsForDifficulties(level);
@@ -129,7 +133,6 @@ function documentClick(e) {
 
          addActiveClassToCardDeck();
 
-         //console.log('playDeck= ', playDeck);
 
       }
    }
@@ -207,7 +210,12 @@ function hideMainTextLevel() {
 }
 
 function setBg(aincientData) {
-   document.body.style.backgroundImage = `url(${aincientData[0].bg})`;
+
+   const img = new Image();
+   img.src = aincientData[0].bg;
+   img.onload = () => {
+      document.body.style.backgroundImage = `url(${aincientData[0].bg})`;
+   };
 }
 
 
@@ -226,7 +234,15 @@ export function removeCardFromStageList(card) {
 
    if (thirdStage[stageKey] != 0) {
       thirdStage[stageKey] = thirdStage[stageKey] - 1;
+      showEndPopup();
       return;
+   }
+
+}
+
+function showEndPopup() {
+   if (playDeck.length === 0) {
+      popupEnd.classList.add('_open');
    }
 }
 

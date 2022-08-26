@@ -31,7 +31,7 @@ body {
 
    &__text {
       position: absolute;
-      top: 30%;
+      top: 25%;
       left: 50%;
       transform: translate(-50%, -50%);
       display: inline-block;
@@ -47,7 +47,7 @@ body {
 
       opacity: 1;
       visibility: visible;
-      transition: all 500ms ease 800ms;
+      transition: all 700ms ease 700ms;
 
       &._onload_out_side {
          opacity: 0;
