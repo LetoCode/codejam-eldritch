@@ -181,6 +181,10 @@ body {
 
       text-transform: lowercase;
    }
+
+   &._inActive {
+      z-index: -10;
+   }
 }
 
 .level {

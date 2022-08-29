@@ -16,6 +16,7 @@ const cardRotatedClassCover = document.querySelector('.card_rotated.back-side');
 let cardCover;
 let cardFace;
 let cardFaceForRotation;
+let cardCoverForRotation;
 
 
 export function addActiveClassToCardDeck() {
@@ -29,12 +30,15 @@ export function setCover(path) {
 
 export function showCover() {
    cardCoverClass.style.backgroundImage = `url('${cardCover}')`;
-   //cardCoverClassImg.setAttribute('src', cardCover);
 }
 
 
 export function setFaceForRotation(path) {
    cardFaceForRotation = path ? path : '';
+}
+
+function setCoverForRotation(card) {
+   cardCoverForRotation = card.cardCover;
 }
 
 
@@ -45,7 +49,6 @@ function setFace(path) {
 
 function showFace() {
    cardFaceClass.style.backgroundImage = `url('${cardFace}')`;
-   //cardFaceClassImg.setAttribute('src', cardFace);
 }
 
 
@@ -71,19 +74,23 @@ function getCardForCoverPath() {
 function clickOnCard() {
    cardCoverClass.removeEventListener('click', clickOnCard);
 
-   const currentCard = getUpCurrentCard()
+   //потом снимаем верхнюю карту
+
+   const currentCard = getUpCurrentCard();
    const currentCardFace = getCurrentCardFacePath(currentCard);
    const currentCardCover = getCardForCoverPath();
    setCover(currentCardCover);
    showCover();
    setFaceForRotation(currentCardFace);
+   setCoverForRotation(currentCard);
 
-   cardRotatedClassCoverImg.setAttribute('src', cardCover);
+   cardRotatedClassCoverImg.setAttribute('src', cardCoverForRotation);
    cardRotatedClassFaceImg.setAttribute('src', cardFaceForRotation);
 
    rotatedImgContainer.classList.add('_visible');
    cardRotatedClassFace.classList.add('_visible');
    cardRotatedClassCover.classList.add('_visible');
+
 
    removeCardFromStageList(currentCard);
    fillHtmlStageCards();
@@ -96,7 +103,7 @@ function clickOnCard() {
       cardRotatedClassFace.classList.remove('_visible');
       cardRotatedClassCover.classList.remove('_visible');
       cardCoverClass.addEventListener('click', clickOnCard);
-   }, 400
+   }, 600
    )
 
 

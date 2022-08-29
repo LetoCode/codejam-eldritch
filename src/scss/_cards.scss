@@ -14,6 +14,9 @@
       &._active {
          z-index: 10;
       }
+      img {
+         border-radius: 10px;
+      }
    }
 
    &__card {
@@ -25,7 +28,7 @@
 
       border-radius: 10px;
 
-      transition: transform 400ms ease 0s;
+      transition: transform 600ms ease 0s;
       flex-grow: 1;
       flex-shrink: 0;
       img {
@@ -57,7 +60,7 @@
    left: -50%;
 
    perspective: 1000px;
-   transition: transform 400ms ease 0s;
+   transition: transform 600ms ease 0s;
 
    &._visible {
       opacity: 1;
@@ -83,14 +86,15 @@
          }
 
          &._visible {
-            transform-origin: 100% 50%;
+            transform-origin: 100%;
             transform: rotateY(180deg) translateX(-20px);
          }
       }
 
       &.back-side {
+         backface-visibility: hidden;
          &._visible {
-            transform-origin: 100% 50%;
+            transform-origin: 100%;
             transform: rotateY(180deg) translateX(-20px);
          }
       }

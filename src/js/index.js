@@ -28,6 +28,7 @@ const stageTreeBlue = document.getElementById('stageTreeBlue');
 
 const btnStart = document.querySelector('.btn_start');
 const levelBtn = document.querySelectorAll('.level__btn');
+const menu = document.querySelector('.menu');
 
 const mainTextAincient = document.querySelector('.main__text._aincient');
 const mainTextLevel = document.querySelector('.main__text._level');
@@ -107,6 +108,7 @@ function documentClick(e) {
       if (isMonster && isLevel && !isPlaying) {
 
          isPlaying = true;
+         menu.classList.add('_inActive');
 
          //Получаем все возможный карты согласно выбранной сложности и выбранного древнего
          const cardsChosen = chooseCardsForDifficulties(level);
